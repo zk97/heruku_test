@@ -1,9 +1,12 @@
 from flask import Flask, jsonify, request
 from http import HTTPStatus
+from os import environ
 
 # Create an instance of Flask class
 app = Flask(__name__)
-
+app.config.from_envvar('APP_SETTINGS')
+app.config['STRIPE_KEY'] = environ.get('STRIPE_API_KEY')
+app.config["USUARIO"]=environ.get('USUARIO_MASTER')
 # Define recipes list
 recipes = [
     {
@@ -22,6 +25,12 @@ recipes = [
 # Use route decorator to tell Flask that the /recipes route to the get_recipes
 # function, and the methods = ['GET'] argument to specify that the route decorator
 # will only respond to GET requests:
+@app.route('/')
+def index():
+    return f'<H1>{app.config["STRIPE_KEY"]}</H1><br>{app.config["USUARIO"]}'
+    
+
+
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
     # use jsonify to convert the list of recipes to JSON format and respond
@@ -96,4 +105,4 @@ def delete_recipe(recipe_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
