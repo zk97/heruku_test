@@ -4,7 +4,8 @@ from os import environ
 
 # Create an instance of Flask class
 app = Flask(__name__)
-#app.config.from_envvar('APP_SETTINGS')
+#gitapp.config.from_envvar('APP_SETTINGS')
+#d
 app.config['STRIPE_KEY'] = environ.get('STRIPE_API_KEY')
 app.config["USUARIO"]=environ.get('USUARIO_MASTER')
 # Define recipes list
