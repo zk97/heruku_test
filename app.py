@@ -8,7 +8,6 @@ app = Flask(__name__)
 #d
 app.config['STRIPE_KEY'] = environ.get('STRIPE_API_KEY')
 app.config["USUARIO"]=environ.get('USUARIO_MASTER')
-app.config['NUEVO']=environ.get('NUEVO_COSA')
 # Define recipes list
 recipes = [
     {
@@ -29,7 +28,7 @@ recipes = [
 # will only respond to GET requests:
 @app.route('/')
 def index():
-    return f'<H1>{app.config["STRIPE_KEY"]}</H1><br>{app.config["USUARIO"],app.config['NUEVO']}'
+    return f'<H1>{app.config["STRIPE_KEY"]}</H1><br>El super usuario<H2>{app.config["USUARIO"]}</H2>'
     
 
 
